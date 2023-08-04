@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
    name='effective_sequence_compression',
@@ -6,5 +6,6 @@ setup(
    description='An utils for experiments',
    author='Konstantin Vedernikov',
    author_email='example@mail.ru',
+   packages=find_packages(),
    packages=['effective_sequence_compression'],
 )
