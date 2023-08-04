@@ -1,5 +1,5 @@
 from datasets import load_dataset
-from batch import Batch
+from effective_sequence_compression.datasets.batch import Batch
 
 class SentimentDataset:
     def __init__(self, batch_size):
