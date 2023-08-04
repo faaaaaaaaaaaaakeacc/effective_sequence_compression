@@ -6,5 +6,7 @@ setup(
    description='An utils for experiments',
    author='Konstantin Vedernikov',
    author_email='example@mail.ru',
-   packages=['effective_sequence_compression'],
+   packages=['effective_sequence_compression.models',
+             'effective_sequence_compression.datasets',
+             'effective_sequence_compression.training'],
 )
