@@ -10,5 +10,6 @@ setup(
              'effective_sequence_compression.datasets',
              'effective_sequence_compression.training',
              'effective_sequence_compression.metrics',
+             'effective_sequence_compression.generator',
              'effective_sequence_compression'],
 )
