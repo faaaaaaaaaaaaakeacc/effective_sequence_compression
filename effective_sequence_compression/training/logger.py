@@ -18,7 +18,8 @@ class Logger:
         self.times_metrics.append(time.time())
 
     def save(self, filename):
-        os.remove(filename)
+        if os.path.exists(os.path.dirname(filename)):
+            os.remove(filename)
         info_logger = {
             "losses" : self.losses,
             "metrics": self.metrics,
