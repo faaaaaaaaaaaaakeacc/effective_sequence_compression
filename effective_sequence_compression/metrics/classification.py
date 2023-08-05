@@ -48,7 +48,7 @@ class F1WithoutThresholdBinary:
         for i in range(len(self.targets) + 1):
             precision = tp / (tp + fp)
             recall = tp / (tp + fn)
-            f1 = (2 * precision * recall) / (precision + recall)
+            f1 = (2 * precision * recall) / (precision + recall + 1e-9)
             max_f1 = max(max_f1, f1)
             if i < len(self.targets) and paired_info[i][1] == 1:
                 fn += 1
@@ -74,6 +74,8 @@ class RocAucBinary:
             self.targets.append(target[i])
 
     def finish(self):
+        if sum(self.targets) == 0 or sum(self.targets) == len(self.targets):
+            return 0
         out = roc_auc_score(self.targets, self.predictions) 
         self.predictions = []
         self.targets = []
