@@ -11,11 +11,9 @@ def train(model, dataset, epochs, logger, criterion, metric, device):
             loss.backward()
             logger.log_loss(loss.item())
             optimizer.step()
-            break
         with torch.no_grad():
             for batch in dataset.iter_batches_test():
                 output = model(batch.text)
                 metric(output.cpu().detach().numpy(), batch.target)
-                break
             logger.log_metric(metric.finish())
         logger.save(f'output_{epoch}.txt')
