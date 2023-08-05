@@ -8,5 +8,7 @@ setup(
    author_email='example@mail.ru',
    packages=['effective_sequence_compression.models',
              'effective_sequence_compression.datasets',
-             'effective_sequence_compression.training'],
+             'effective_sequence_compression.training',
+             'effective_sequence_compression.metrics',
+             'effective_sequence_compression'],
 )
