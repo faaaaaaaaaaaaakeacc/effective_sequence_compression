@@ -18,18 +18,15 @@ class Logger:
         self.times_metrics.append(time.time())
 
     def save(self, filename):
-        if os.path.exists(os.path.dirname(filename)):
-            os.remove(filename)
         info_logger = {
             "losses" : self.losses,
             "metrics": self.metrics,
             "times_losses" : self.times_losses,
             "times_metrics" : self.times_metrics
         }
-        if not os.path.exists(os.path.dirname(filename)):
-            os.makedirs(os.path.dirname(filename))
         with open(filename, 'w+') as convert_file:
             convert_file.write(json.dumps(info_logger))
+
 
     def upload(self, filename):
         f = open(filename)
