@@ -10,7 +10,6 @@ class RobertaWrapper(nn.Module):
         self.truncation_list = truncation_list
         self.model = AutoModel.from_pretrained("roberta-base")
         self.tokenizer = AutoTokenizer.from_pretrained("roberta-base")
-        self.tokenizer.to()
         self.classifier = nn.Linear(768, n_classes)
         self.device = device
 
