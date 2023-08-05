@@ -25,7 +25,9 @@ class Logger:
             "times_losses" : self.times_losses,
             "times_metrics" : self.times_metrics
         }
-        with open(filename, 'w') as convert_file:
+        if not os.path.exists(os.path.dirname(filename)):
+            os.makedirs(os.path.dirname(filename))
+        with open(filename, 'w+') as convert_file:
             convert_file.write(json.dumps(info_logger))
 
     def upload(self, filename):

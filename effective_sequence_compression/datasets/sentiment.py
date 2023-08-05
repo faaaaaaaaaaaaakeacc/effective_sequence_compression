@@ -1,6 +1,7 @@
 from datasets import load_dataset
 from effective_sequence_compression.datasets.batch import Batch
 
+
 class SentimentDataset:
     def __init__(self, batch_size):
         self.batch_size = batch_size
@@ -31,8 +32,8 @@ class SentimentDataset:
 
     def get_num_targets(self):
         if self.max_target is not None:
-            return self.max_target
+            return self.max_target + 1
         self.max_target = 0
         for i in range(len(self.dataset['train'])):
             self.max_target = max(self.max_target, self.dataset['train'][i]['sentiment'])
-        return self.max_target
+        return self.max_target + 1

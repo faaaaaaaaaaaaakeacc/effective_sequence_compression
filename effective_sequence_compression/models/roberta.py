@@ -13,7 +13,7 @@ class RobertaWrapper(nn.Module):
         self.classifier = nn.Linear(768, n_classes)
 
     def forward(self, input_texts):
-        input_batch = self.tokenizer(input_texts, return_tensors="pt")
+        input_batch = self.tokenizer(input_texts, padding=True, truncation=True, return_tensors="pt")
         if self.truncation_list is None:
             output = self.model(**input_batch).last_hidden_state
             output = torch.mean(output, dim=1)

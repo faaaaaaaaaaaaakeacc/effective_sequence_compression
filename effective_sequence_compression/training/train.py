@@ -3,7 +3,7 @@ from tqdm.auto import trange
 
 def train(model, dataset, epochs, logger, criterion, metric, device):
     optimizer = torch.optim.Adam(model.parameters(), lr = 3e-4)
-    for _ in trange(epochs):
+    for epoch in trange(epochs):
         for batch in dataset.iter_batches_train():
             optimizer.zero_grad()
             output = model(batch.text)
@@ -11,8 +11,11 @@ def train(model, dataset, epochs, logger, criterion, metric, device):
             loss.backward()
             logger.log_loss(loss.item())
             optimizer.step()
+            break
         with torch.no_grad():
             for batch in dataset.iter_batches_test():
                 output = model(batch.text)
                 metric(output.cpu().detach().numpy(), batch.target)
+                break
             logger.log_metric(metric.finish())
+        logger.save(f'output_{epoch}.txt')
